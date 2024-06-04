@@ -1,0 +1,125 @@
+
+  
+  .step {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 5px;
+    text-align: center;
+    line-height: 30px;
+  }
+  
+  .step.active {
+    background-color: #007bff; 
+    color: #fff;
+  }
+  
+  .progress {
+    height: 2px;
+    background-color: #007bff; 
+    position: relative;
+    transition: width 0.5s ease;
+  }
+
+  .Container{
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 8px;
+    padding: 8px;
+  }
+  
+  .CompnentList{
+    display: block;
+    width: 100%;
+    text-align: center;
+    height: 470px;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    align-content: center;
+  }
+
+  #prev, #next{
+    border: 1px solid rgb(41, 112, 206);
+    background-color: rgb(41, 112, 206);
+    width: 70px;
+    height: 40px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+    margin-inline: 6px;
+}
+
+
+.step-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative; 
+  }
+  
+  .step {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 65px;
+    text-align: center;
+    line-height: 30px;
+  }
+  .step:first{
+    position: absolute;
+    left: 10px;
+  }
+  .step:last-child{
+    position: absolute;
+    left: 10px;
+  }
+  .step.active {
+    background-color: #007bff; 
+    color: #fff;
+  }
+  
+  #progress {
+    height: 2px;
+    background-color: #007bff;
+    position: absolute;
+    width: 100%; 
+    transform: translateY(-50%); 
+    transition: width 0.5s ease; 
+    left: 37%;
+    top: 4.6%;
+    width: 100%;
+    transform: translateY(-150%);
+    transition: width 0.5s ease;
+    z-index: -1;
+  }
+
+  .line-hidden{
+    visibility: hidden;
+  }
+
+  .line-active{
+    visibility: visible;
+  }
+
+  
+.line-active{
+    visibility: visible;
+    width: 45px;
+    display: block;
+    background-color: blue;
+    /* z-index: 99; */
+    /* display: none; */
+    position: absolute;
+    top: 22px;
+    left: 47%;
+    z-index: -1;
+    height: 2px;
+}

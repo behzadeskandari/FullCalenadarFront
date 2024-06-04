@@ -1,0 +1,360 @@
+.stepper-parent-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: calc(100% - 4rem);
+  margin-top: $component-gap;
+  .sep-button {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    button {
+      border-radius: 30px;
+      width: 120px;
+    }
+  }
+  .steps-item {
+    cursor: pointer;
+    .step-description {
+      @include darkGray-semibold-tiny;
+      position: absolute;
+      box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.16);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      background: $cWhite;
+      left: 50%;
+      transform: translate(-50%, 0);
+      width: fit-content;
+      z-index: $level-1;
+    }
+  }
+
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+    .steps-item-description {
+      position: absolute;
+      box-shadow: $bShadowLarge;
+      line-height: 2rem;
+      border-radius: 0.2rem;
+      width: 100% !important;
+      box-sizing: border-box;
+      top: 105%;
+      background-color: $cWhite;
+      z-index: $level-1;
+      font-size: $fTiny;
+      font-weight: $wSemiBold;
+      white-space: normal;
+      padding: 0.2rem !important;
+      display: none;
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 0;
+        right: calc(50% - 15px);
+        box-sizing: border-box;
+        border: 0.5rem solid $cWhite;
+        transform-origin: 0 0;
+        transform: rotate(135deg);
+        box-shadow: -0.3rem 0.3rem 0.3rem 0 $cGray;
+      }
+    }
+    .steps-item-title:hover + .steps-item-description {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .steps-item-container.steps-item-container {
+      padding-bottom: 0.8rem;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    .steps-item-content.steps-item-content {
+      position: absolute;
+      box-shadow: 0 0 1rem 0.8rem rgba(0, 0, 0, 0.16);
+      line-height: 2rem;
+      border-radius: 0.2rem;
+      width: 100%;
+      top: 80%;
+      right: calc(50% - 15px);
+      left: 0;
+      z-index: $level-1;
+      background-color: $cWhite;
+      font-size: $fTiny;
+      font-weight: $wSemiBold;
+      white-space: normal;
+      padding: $component-gap !important;
+      display: none !important;
+      &:after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 0;
+        right: calc(50% - 15px);
+        box-sizing: border-box;
+        border: 0.5rem solid rgb(255, 255, 255);
+        transform-origin: 0 0;
+        transform: rotate(135deg);
+        box-shadow: -0.3rem 0.3rem 0.3rem 0 rgba(212, 212, 212, 0.4);
+      }
+    }
+    .description-step-container {
+      display: none;
+    }
+    .steps-item-icon:hover + .steps-item-content {
+      display: block !important;
+    }
+  }
+  .stepper-container {
+    background-color: $cWhite;
+    padding: $layout-gap;
+    border-radius: 0.2rem;
+    box-shadow: $bShadowLess;
+    margin: 0 0.8rem;
+    .stepper-steps {
+      display: flex;
+      position: relative;
+      .steps-item {
+        &:not(:first-child) {
+          &::before {
+            content: '';
+            position: absolute;
+            top: 1.2rem;
+            left: -43%;
+            z-index: 1;
+            width: 100%;
+            background-color: $cGray;
+            font-weight: 400;
+            height: 1px !important;
+          }
+        }
+      }
+    }
+  }
+  .steps-content {
+    display: flex;
+    flex: 1;
+    overflow: auto;
+  }
+
+  //for use inside Pages
+  .stepperDetailContainer {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin: 0 0.8rem;
+
+    .detail-container {
+      height: 100%;
+      overflow: auto;
+      overflow-x: hidden;
+      background: $cWhite;
+      margin-bottom: $layout-gap;
+      box-shadow: $bShadowLess;
+    }
+
+    .scroll-container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+      align-items: stretch;
+    }
+
+    .button-group-container {
+      display: flex;
+      flex-direction: row;
+      padding: 0;
+      .skip-button {
+        margin-left: $layout-gap;
+      }
+      &.button-alignment {
+        justify-content: flex-end;
+      }
+      .perv-button {
+        flex-grow: 1;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  //for override ant design Component
+
+  .steps {
+    padding-top: 0rem !important;
+  }
+  .steps-item {
+    flex: 1 1;
+    position: relative;
+    width: 100% !important;
+  }
+  .steps-item-tail {
+    display: none;
+  }
+
+  .steps-item-container {
+    padding: 0 0.2rem;
+    padding-bottom: 0;
+    margin-left: 0 !important;
+    text-align: center !important;
+    width: 100% !important;
+    border-bottom: solid 0.2rem $cGray;
+    height: 100%;
+
+    &.current-step {
+      border-color: $cHyperLink;
+    }
+
+    .steps-item-icon {
+      position: relative;
+      z-index: 2;
+      width: 2.4rem;
+      height: 2.4rem;
+      background: $cGray;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+  }
+
+  .steps-navigation .steps-item::before {
+    background-color: $cHyperLink;
+  }
+
+  .steps-item-content {
+    width: 100% !important;
+    min-width: fit-content;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1rem;
+    position: relative;
+    box-sizing: border-box;
+    .steps-item-title {
+      @include darkGray-Bold-ordinary;
+    }
+    .current-step-title {
+      color: $cDark;
+    }
+  }
+  .steps-item-wait {
+    .steps-item::after {
+      border: 0.2rem solid $cGray !important;
+      width: 1rem;
+      height: 1rem;
+      border-bottom-style: none !important;
+      border-left-style: none !important;
+      top: 2rem !important;
+      margin-left: -0.2rem !important;
+    }
+  }
+  .steps-item.steps-item-wait.steps-item::after {
+    border: 0.2rem solid $cGray !important;
+    width: 1rem;
+    height: 1rem;
+    border-bottom-style: none !important;
+    border-left-style: none !important;
+    top: 2rem !important;
+    margin-left: -0.2rem !important;
+  }
+
+  .steps-item.steps-item-finish.steps-item::after {
+    border: 0.2rem solid $cHyperLink !important;
+    width: 1rem;
+    height: 1rem;
+    border-bottom-style: none !important;
+    border-left-style: none !important;
+    border-color: $cHyperLink;
+    top: 2rem !important;
+    margin-left: -0.2rem !important;
+  }
+  .steps-item.steps-item-active::before {
+    background-color: $cHyperLink !important;
+  }
+  .steps-icon {
+    @include white-semibold-small-important;
+  }
+
+  .steps-item-disabled {
+    .steps-item-icon {
+      background-color: $cGray !important;
+    }
+  }
+
+  .steps-item-active {
+    .steps-item-icon {
+      background-color: $cHyperLink !important;
+    }
+
+    .steps-item-title {
+      color: $cDark;
+    }
+  }
+
+  .steps-item-wait {
+    .steps-item:before {
+      background-color: $cDarkGray !important;
+    }
+  }
+
+  .stepper-parent-container
+    .steps-item-wait
+    > .steps-item-container
+    > .steps-item-content
+    > .steps-item-title {
+    @include dark-Bold-ordinary;
+    font-weight: bold;
+  }
+
+  .stepper-parent-container
+    .steps-item-wait
+    > .steps-item-container
+    > .steps-item-content
+    > .steps-item-description {
+    @include darkGray-semibold-tiny;
+  }
+
+  .steps-item-wait > .steps-item-container > .steps-item-content > .steps-item-title {
+    @include darkGray-Bold-ordinary;
+    font-weight: bold;
+  }
+
+  .steps-item-wait > .steps-item-container > .steps-item-content > .steps-item-description {
+    @include darkGray-semibold-tiny;
+  }
+
+  .steps-item-process > .steps-item-container > .steps-item-content > .steps-item-description {
+    @include darkGray-semibold-tiny;
+  }
+
+  .steps-item-finish > .steps-item-container > .steps-item-content > .steps-item-title {
+    @include dark-Bold-ordinary;
+    font-weight: bold;
+  }
+  .steps-item-finish > .steps-item-container > .steps-item-content > .steps-item-description {
+    @include darkGray-semibold-tiny;
+  }
+  .steps
+    .steps-item:not(.steps-item-active)
+    > .steps-item-container[role='button']:hover
+    .steps-item-description {
+    color: $cDarkGray;
+  }
+  .steps-item-finish .steps-item-icon {
+    background-color: $cHyperLink !important;
+  }
+
+  .steps-label-vertical.steps-small:not(.steps-dot) .steps-item-icon {
+    width: 2.4rem;
+    height: 2.4rem;
+    background: $cGray;
+    border-radius: 50%;
+    margin-left: 0rem;
+    margin-right: 0rem;
+  }
+  .steps-navigation .steps-item:not(.steps-item-active) .steps-item-container[role='button']:hover {
+    opacity: 1;
+  }
+}

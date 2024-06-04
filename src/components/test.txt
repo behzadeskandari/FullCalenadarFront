@@ -1,0 +1,1177 @@
+
+// // App.js
+
+// // Import necessary dependencies
+// import React, { useState } from "react";
+// import FullCalendar from "@fullcalendar/react";
+// import dayGridPlugin from "@fullcalendar/daygrid";
+// import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+// import Modal from "./Modal"; // Import your modal component
+// import "./App.css";
+
+// function App() {
+//   const [modalVisible, setModalVisible] = useState(false);
+
+//   // Function to handle opening the modal
+//   const handleOpenModal = () => {
+//     setModalVisible(true);
+//   };
+
+//   return (
+//     <div className="App">
+//       {/* Render FullCalendar with custom button */}
+//       <FullCalendar
+//         plugins={[dayGridPlugin, bootstrap5Plugin]}
+//         initialView="dayGridMonth"
+//         customButtons={{
+//           customButton: {
+//             text: 'Custom Button',
+//             click: handleOpenModal // Attach event handler to custom button
+//           }
+//         }}
+//         headerToolbar={{
+//           start: 'customButton today prev,next',
+//           center: 'title',
+//           end: ''
+//         }}
+//         events={[
+//           { title: 'Event 1', date: '2024-05-01' },
+//           { title: 'Event 2', date: '2024-05-02' },
+//           // Add more events as needed
+//         ]}
+//       />
+//       {/* Render modal component */}
+//       {modalVisible && <Modal onClose={() => setModalVisible(false)} />}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+// // Modal component
+// const Modal = ({ onClose }) => {
+//   return (
+//     <div className="modal">
+//       <div className="modal-content">
+//         <span className="close" onClick={onClose}>&times;</span> {/* Close button */}
+//         <h2>Modal Title</h2> {/* Modal title */}
+//         <p>Modal Content</p> {/* Modal content */}
+//       </div>
+//     </div>
+//   );
+// };
+
+
+
+// // In the `Modal` component:
+
+// // - We define a functional component `Modal` that accepts props, including `onClose`
+// //.. function to handle closing the modal.
+// // - Inside the component, we render the modal content, including a close button 
+// //(an 'x' icon) that triggers the `onClose` function when clicked.
+// // You can customize the modal content and styling as per your requirements
+// // . Also, don't forget to add CSS styles to make the modal visually appealing 
+// //and responsive.
+
+
+
+
+
+// // To open the modal and pass data (such as description, title, start time, and end time) 
+// // to it, as well as to implement an edit mode, you can modify the `Modal` component to
+// // . accept props for the data and edit mode. Additionally, you can integrate Bootstrap 5
+// //  styles for the modal and add input fields to display and edit the data.
+// //   Here's how you can do it:
+
+// jsx
+// // Modal.js
+
+// // Import necessary dependencies
+// import React, { useState } from "react";
+// import { Modal, Button, Form } from "react-bootstrap"; // Import Bootstrap components
+
+// // Modal component
+// const CustomModal = ({ show, onClose, title, description, start, end, editMode }) => {
+//   // State variables to track edited values
+//   const [editedTitle, setEditedTitle] = useState(title);
+//   const [editedDescription, setEditedDescription] = useState(description);
+
+//   // Function to handle saving edited values
+//   const handleSave = () => {
+//     // Implement save functionality here
+//     console.log("Edited title:", editedTitle);
+//     console.log("Edited description:", editedDescription);
+//     onClose(); // Close the modal after saving
+//   };
+
+//   return (
+//     <Modal show={show} onHide={onClose} centered>
+//       <Modal.Header closeButton>
+//         <Modal.Title>{editMode ? "Edit Event" : "Add Event"}</Modal.Title>
+//       </Modal.Header>
+//       <Modal.Body>
+//         <Form>
+//           <Form.Group controlId="formTitle">
+//             <Form.Label>Title</Form.Label>
+//             <Form.Control
+//               type="text"
+//               placeholder="Enter title"
+//               value={editedTitle}
+//               onChange={(e) => setEditedTitle(e.target.value)}
+//             />
+//           </Form.Group>
+//           <Form.Group controlId="formDescription">
+//             <Form.Label>Description</Form.Label>
+//             <Form.Control
+//               as="textarea"
+//               placeholder="Enter description"
+//               value={editedDescription}
+//               onChange={(e) => setEditedDescription(e.target.value)}
+//             />
+//           </Form.Group>
+//           <Form.Group controlId="formStart">
+//             <Form.Label>Start Time</Form.Label>
+//             <Form.Control type="text" value={start} readOnly />
+//           </Form.Group>
+//           <Form.Group controlId="formEnd">
+//             <Form.Label>End Time</Form.Label>
+//             <Form.Control type="text" value={end} readOnly />
+//           </Form.Group>
+//         </Form>
+//       </Modal.Body>
+//       <Modal.Footer>
+//         <Button variant="secondary" onClick={onClose}>
+//           Close
+//         </Button>
+//         <Button variant="primary" onClick={handleSave}>
+//           Save Changes
+//         </Button>
+//       </Modal.Footer>
+//     </Modal>
+//   );
+// };
+
+// export default CustomModal;
+
+
+// // In this `Modal` component:
+
+// // // - We use the `Modal`, `Button`, and `Form` components from Bootstrap to create a 
+// // modal with input fields for title and description.
+// // // - The modal dynamically displays either "Edit Event" or "Add Event" based on
+// //  the `
+// // editMode` prop.
+// // // - Input fields for start and end time are read-only and display the passed values.
+// // // - State variables `editedTitle` and `editedDescription` track the edited values in 
+// // edit mode.
+//  // - The `handleSave` function is called when the user clicks the "Save Changes" button.
+// //  You can implement saving functionality here.
+// // // - The modal is conditionally rendered based on the `show` prop, which controls its
+// //  visibility.
+// // // - When the modal is closed (`onClose` function is called), it triggers the `onClose` function passed as a prop.
+
+// // // Now, you can use this `CustomModal` component in your `App` component and pass
+// //  the necessary props such as `show`, `onClose`, `title`, `description`, `start`, `end`
+// // , and `editMode`. Make sure to import Bootstrap CSS in your `index.js` file or another
+// //  appropriate location to apply Bootstrap styles to the modal.
+
+
+
+
+
+
+
+
+
+
+
+
+// // To achieve this behavior in FullCalendar, you can utilize the 
+// // `eventClick` callback to handle clicks on event cards and a custom button.
+// //  Here's how you can modify your `App` component to achieve this:
+
+// // jsx
+// // App.js
+
+// // Import necessary dependencies
+// import React, { useState } from "react";
+// import FullCalendar from "@fullcalendar/react";
+// import dayGridPlugin from "@fullcalendar/daygrid";
+// import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+// import Modal from "./Modal"; // Import your modal component
+// import "./App.css";
+
+// function App() {
+//   const [editModalVisible, setEditModalVisible] = useState(false);
+//   const [newModalVisible, setNewModalVisible] = useState(false);
+//   const [selectedEventData, setSelectedEventData] = useState(null);
+
+//   // Function to handle opening the edit modal when clicking on an event card
+//   const handleEventClick = (eventClickInfo) => {
+//     setSelectedEventData(eventClickInfo.event);
+//     setEditModalVisible(true);
+//   };
+
+//   // Function to handle opening the new modal when clicking on the custom button
+//   const handleNewModalOpen = () => {
+//     setNewModalVisible(true);
+//   };
+
+//   return (
+//     <div className="App">
+//       {/* Render FullCalendar */}
+//       <FullCalendar
+//         plugins={[dayGridPlugin, bootstrap5Plugin]}
+//         initialView="dayGridMonth"
+//         events={[
+//           { title: 'Event 1', date: '2024-05-01' },
+//           { title: 'Event 2', date: '2024-05-02' },
+//           // Add more events as needed
+//         ]}
+//         eventClick={handleEventClick} // Attach event handler for event click
+//         headerToolbar={{
+//           start: 'customButton today prev,next',
+//           center: 'title',
+//           end: ''
+//         }}
+//         customButtons={{
+//           customButton: {
+//             text: 'Custom Button',
+//             click: handleNewModalOpen // Attach event handler to custom button
+//           }
+//         }}
+//       />
+//       {/* Render modals */}
+//       {editModalVisible && (
+//         <Modal
+//           show={editModalVisible}
+//           onClose={() => setEditModalVisible(false)}
+//           title={selectedEventData.title}
+//           description={selectedEventData.extendedProps.description}
+//           start={selectedEventData.start}
+//           end={selectedEventData.end}
+//           editMode={true}
+//         />
+//       )}
+//       {newModalVisible && (
+//         <Modal
+//           show={newModalVisible}
+//           onClose={() => setNewModalVisible(false)}
+//           title=""
+//           description=""
+//           start={null}
+//           end={null}
+//           editMode={false}
+//         />
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
+// // In this example:
+
+// // - We maintain state variables `editModalVisible` and `newModalVisible` to control the
+// //  visibility
+// //  of the edit and new modals respectively.
+// // // - When a user clicks on an event card, the `handleEventClick` function is called,
+// //  which sets the `editModalVisible` state to `true` and passes the selected event data
+// //   to the `Modal` component for editing.
+// // // - When the custom button is clicked, the `handleNewModalOpen` function is called,
+// //  which sets the `newModalVisible` state to `true` and opens a new modal for adding a 
+// //  new event.
+// // // - The `Modal` component receives props such as `show`, `onClose`, `title`,
+// //  `description`, `start`, `end`, and `editMode` to display the modal with appropriate
+// //   data and mode (edit or add).
+
+
+
+
+
+
+
+
+// To achieve this, you can utilize the `eventClick` callback provided by FullCalendar. 
+// Here's how you can modify your `App` component to
+// open the edit modal with the event data
+//  when an event is clicked:
+
+jsx
+// App.js
+
+// Import necessary dependencies
+import React, { useState } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+import Modal from "./Modal"; // Import your modal component
+import "./App.css";
+
+function App() {
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [selectedEventData, setSelectedEventData] = useState(null);
+
+  // Function to handle opening the edit modal when clicking on an event card
+  const handleEventClick = (eventClickInfo) => {
+    setSelectedEventData(eventClickInfo.event);
+    setEditModalVisible(true);
+  };
+
+  // Function to handle closing the edit modal
+  const handleCloseEditModal = () => {
+    setEditModalVisible(false);
+  };
+
+  return (
+    <div className="App">
+      {/* Render FullCalendar */}
+      <FullCalendar
+        plugins={[dayGridPlugin, bootstrap5Plugin]}
+        initialView="dayGridMonth"
+        events={[
+          { title: 'Event 1', date: '2024-05-01' },
+          { title: 'Event 2', date: '2024-05-02' },
+          // Add more events as needed
+        ]}
+        eventClick={handleEventClick} // Attach event handler for event click
+        headerToolbar={{
+          start: 'customButton today prev,next',
+          center: 'title',
+          end: ''
+        }}
+        customButtons={{
+          customButton: {
+            text: 'Custom Button',
+            click: () => console.log('Custom button clicked') // Custom button click handler
+          }
+        }}
+      />
+      {/* Render edit modal */}
+      {selectedEventData && (
+        <Modal
+          show={editModalVisible}
+          onClose={handleCloseEditModal}
+          title={selectedEventData.title}
+          description={selectedEventData.extendedProps.description}
+          start={selectedEventData.start}
+          end={selectedEventData.end}
+          editMode={true}
+        />
+      )}
+    </div>
+  );
+}
+
+export default App;
+Tue May 14 2024 09:00:00 GMT+0330 (Iran Standard Time)
+Tue May 14 2024 17:00:00 GMT+0330 (Iran Standard Time)
+// In this example:
+
+// // - We maintain state variables `editModalVisible` to control the visibility
+//  of the edit 
+// modal and `selectedEventData` to store the data of the clicked event.
+// // - When an event card is clicked, the `handleEventClick` function is called, which
+//  sets the `selectedEventData` state with the data of the clicked event and sets the 
+//  `editModalVisible` state to `true`.
+// // - The `Modal` component receives the event data (`title`, `description`, `start`,
+//  `end`) and the `editMode` flag as props. It renders the modal in edit mode with 
+//  the event data filled in the input fields.
+// // - When the modal is closed (`onClose` function is called), it sets the
+//  `editModalVisible` state to `false`, closing the modal.
+
+
+
+
+
+// It seems like you're encountering an "undefined" error when trying to access 
+// selectedEventData.extendedProps.description in your CustomModal component. This
+//  error typically occurs when you're trying to access a property on an object that
+//   doesn't exist.
+
+// To resolve this issue, you should ensure that selectedEventData and 
+// selectedEventData.extendedProps are not null or undefined before trying to 
+// access selectedEventData.extendedProps.description. You can do this by adding 
+// optional chaining (?.) in your code, which safely accesses nested object properties.
+
+// Here's how you can modify the CustomModal component invocation to prevent the
+//  "undefined" error:
+
+{selectedEventData && (
+<CustomModal
+setSelectedEventData={setSelectedEventData}
+show={editModalVisible}
+onClose={handleCloseEditModal}
+title={selectedEventData.title}
+description={selectedEventData.extendedProps?.description} // Use optional chaining here
+start={selectedEventData.start}
+end={selectedEventData.end}
+editMode={true}
+/>
+)}
+
+// By using selectedEventData.extendedProps?.description, 
+// you're telling JavaScript to only attempt to access description if
+//  extendedProps is not null or undefined. If extendedProps is null or
+//   undefined, it will return undefined instead of throwing an error.
+// Additionally, ensure that when you're updating the
+//  selectedEventData state with the edited values from the modal,
+//   you're correctly updating the nested extendedProps object. Here's an
+//    example of how you might handle the save function:
+
+const handleSave = () => {
+// Assuming you have a function to update the events array
+updateEvent(selectedEventData.id, {
+...selectedEventData,
+title: editedTitle,
+extendedProps: {
+...selectedEventData.extendedProps,
+description: editedDescription
+}
+});
+onClose(); // Close the modal after saving
+};
+
+// Make sure that the updateEvent function correctly updates the
+//  event in the events array and that the events state is updated accordingly.
+
+// If you continue to experience issues, please check the data 
+// structure of your events and ensure that extendedProps and description are being 
+// set as expected when the events are initially fetched and stored in your state. 
+// If you need further assistance, feel free to ask!
+
+
+
+
+
+const updateEvent = (id, updatedEventData) => {
+  // Find the event index in the events array
+  const eventIndex = events.findIndex((event) => event.id === id);
+  
+  // If eventIndex is not found, return
+  if (eventIndex === -1) {
+    console.error("Event not found");
+    return;
+  }
+  
+  // Update the event at the found index
+  const updatedEvents = [...events];
+  updatedEvents[eventIndex] = {
+    ...updatedEvents[eventIndex],
+    ...updatedEventData
+  };
+  
+  // Update the events state with the new events array
+  setEvents(updatedEvents);
+  
+  // If you want to update the event in the FullCalendar view, use its methods
+  const calendarApi = calendarRef.current.getApi(); // Assuming you have a ref to the
+  // FullCalendar component
+  const eventToUpdate = calendarApi.getEventById(id); // Get the event by id
+  eventToUpdate.setProp("title", updatedEventData.title); // Update the title
+  eventToUpdate.setExtendedProp("description", updatedEventData.description); //
+  /// Update the description
+  // Similarly, update other properties as needed
+  
+  // Close the edit modal
+  handleCloseEditModal();
+};
+
+
+
+// You're correct. To add a new event using FullCalendar's `eventAdd`
+//  callback, you need to define a function that will handle the addition of the 
+//  new event and then pass that function to the `eventAdd` callback option in your 
+//  FullCalendar component.
+
+// Here's how you can do it:
+
+javascript
+import React, { useEffect, useState, useRef } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+
+function App() {
+  const [events, setEvents] = useState([]);
+  const calendarRef = useRef(null);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = () => {
+    // Fetch events from your backend or any other source
+    // For example:
+    const initialEvents = [
+      {
+        id: "1",
+        title: "Event 1",
+        start: "2024-05-20T10:00:00",
+        end: "2024-05-20T12:00:00"
+      },
+      {
+        id: "2",
+        title: "Event 2",
+        start: "2024-05-21T14:00:00",
+        end: "2024-05-21T16:00:00"
+      }
+    ];
+    setEvents(initialEvents);
+  };
+
+  const handleEventAdd = (addedEvent) => {
+    console.log(addedEvent,'addedEvent')
+    // Here you can add the new event to your events state
+    setEvents((prevEvents) => [...prevEvents, addedEvent]);
+  };
+
+  return (
+    <div className="App">
+      <FullCalendar
+        ref={calendarRef}
+        plugins={[dayGridPlugin, timeGridPlugin, bootstrap5Plugin]}
+        initialView="dayGridMonth"
+        events={events}
+        headerToolbar={{
+          left: "prev,next today",
+          center: "title",
+          right: "dayGridMonth,timeGridWeek,timeGridDay"
+        }}
+        eventAdd={handleEventAdd} // Pass the eventAdd callback
+      />
+    </div>
+  );
+}
+
+export default App;
+
+
+// In this example, `handleEventAdd` is a function that
+//  takes the newly added event as a parameter and updates the `events` state by 
+//  adding the new event to the existing array of events. Then, `eventAdd={handleEventAdd}`
+//   is passed to the `FullCalendar` component as a prop, which tells FullCalendar
+//  to call this function whenever a new event is added to the calendar.
+
+
+// It seems like the issue might be related to how you're updating the events 
+// in the `updateEvent` function and how you're passing the updated event data back to 
+// the `App.js` component.
+// Let's take a closer look:
+// 1. **updateEvent Function**:
+//    In your `updateEvent` function, you're updating the 
+//    event in the state correctly, but you're also trying to update the event
+//     in the FullCalendar view using `setProp` and `setExtendedProp` methods.
+//      However, you're missing the `calendarApi.render()` method to render the 
+//      updated event on the calendar after making changes to it. Here's how you can 
+//      update the event in the FullCalendar view:
+
+  // javascript
+   const updateEvent = (id, updatedEventData) => {
+     const eventIndex = events.findIndex((event) => event.id === id);
+
+     if (eventIndex === -1) {
+       console.error("Event not found");
+       return;
+     }
+
+     const updatedEvents = [...events];
+     updatedEvents[eventIndex] = {
+       ...updatedEvents[eventIndex],
+       ...updatedEventData,
+     };
+
+     setEvents(updatedEvents);
+
+     // Render the updated event on the calendar
+     const calendarApi = calendarRef.current.getApi();
+     const eventToUpdate = calendarApi.getEventById(id);
+     eventToUpdate.setProp("title", updatedEventData.title);
+     eventToUpdate.setExtendedProp("description", updatedEventData.description);
+     calendarApi.render(); // Render the changes on the calendar
+   };
+   
+
+// 2. **CustomModal Component**:
+//    In your `CustomModal` component, after saving the changes,
+//     you're calling the `onClose` function to close the modal. However,
+//      you're also updating the events asynchronously. This means that the 
+//      events might not have been updated in the state by the time the modal closes.
+//       To ensure that the modal closes only after the events have been updated, you
+//        can move the `onClose` call inside the `setEvents` callback:
+
+//    //javascript
+//    const handleSave = () => {
+//      if (editMode) {
+//        updateEvent(id, {
+//          ...selectedEventData,
+//          title: editedTitle,
+//          extendedProps: {
+//            ...selectedEventData.extendedProps,
+//            description: editedDescription,
+//          },
+//        });
+//      }
+
+//      console.log("Edited title:", editedTitle);
+//      console.log("Edited description:", editedDescription);
+
+//      // Move the onClose call inside the setEvents callback
+//      setEvents((prevEvents) => {
+//        onClose(); // Close the modal after saving
+//        return prevEvents;
+//      });
+//    };
+   
+
+// // With these adjustments, the events should be updated correctly
+// //  in the state and rendered on the FullCalendar view, and the `handleEventAdd`
+// //   function should be called when adding a new event.
+
+
+
+// To handle adding new data inside the `CustomModal` component, you can add a separate function to handle the creation of a new event. Here's how you can modify the `CustomModal` component to support adding new events:
+
+// javascript
+// import React, { useState } from "react";
+// import { Modal, Button, Form } from "react-bootstrap";
+
+// const CustomModal = ({
+//   show,
+//   onClose,
+//   title,
+//   description,
+//   start,
+//   end,
+//   editMode,
+//   setSelectedEventData,
+//   selectedEventData,
+//   updateEvent,
+//   addEvent, // Function to add a new event
+// }) => {
+//   // State variables to track edited values
+//   const [editedTitle, setEditedTitle] = useState(title);
+//   const [editedDescription, setEditedDescription] = useState(description);
+
+//   // Function to handle saving edited values or adding a new event
+//   const handleSave = () => {
+//     if (editMode) {
+//       // Update existing event
+//       updateEvent(selectedEventData.id, {
+//         ...selectedEventData,
+//         title: editedTitle,
+//         extendedProps: {
+//           ...selectedEventData.extendedProps,
+//           description: editedDescription,
+//         },
+//       });
+//     } else {
+//       // Add new event
+//       addEvent({
+//         title: editedTitle,
+//         description: editedDescription,
+//         start, // Assuming start and end are provided externally for new events
+//         end,
+//       });
+//     }
+
+//     // Close the modal after saving
+//     onClose();
+//   };
+
+//   return (
+//     <Modal show={show} onHide={onClose} centered>
+//       <Modal.Header closeButton>
+//         <Modal.Title>{editMode ? "Edit Event" : "Add Event"}</Modal.Title>
+//       </Modal.Header>
+//       <Modal.Body>
+//         <Form>
+//           <Form.Group controlId="formTitle">
+//             <Form.Label>Title</Form.Label>
+//             <Form.Control
+//               type="text"
+//               placeholder="Enter title"
+//               value={editedTitle}
+//               onChange={(e) => setEditedTitle(e.target.value)}
+//             />
+//           </Form.Group>
+//           <Form.Group controlId="formDescription">
+//             <Form.Label>Description</Form.Label>
+//             <Form.Control
+//               as="textarea"
+//               placeholder="Enter description"
+//               value={editedDescription}
+//               onChange={(e) => setEditedDescription(e.target.value)}
+//             />
+//           </Form.Group>
+//           <Form.Group controlId="formStart">
+//             <Form.Label>Start Time</Form.Label>
+//             <Form.Control type="text" value={start} />
+//           </Form.Group>
+//           <Form.Group controlId="formEnd">
+//             <Form.Label>End Time</Form.Label>
+//             <Form.Control type="text" value={end} />
+//           </Form.Group>
+//         </Form>
+//       </Modal.Body>
+//       <Modal.Footer>
+//         <Button variant="secondary" onClick={onClose}>
+//           Close
+//         </Button>
+//         <Button variant="primary" onClick={handleSave}>
+//           Save Changes
+//         </Button>
+//       </Modal.Footer>
+//     </Modal>
+//   );
+// };
+
+// export default CustomModal;
+
+
+// In this modified version of the `CustomModal` component,
+// . I added a condition to check whether it's in
+//  edit mode or add mode. If it's in edit mode, it updates 
+//  the existing event using the `updateEvent` function passed as a prop.
+//   If it's in add mode, it calls the `addEvent` function passed as a 
+//   prop to add a new event.
+// Make sure to pass the `addEvent` function from 
+// the `App.js` component when rendering the `CustomModal` component
+//  for adding new events.
+
+
+
+Sure, here's how you can handle FullCalendar events and modal interactions in your
+ `App.js` file:
+
+javascript
+import React, { useEffect, useState, useRef } from "react";
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+import axios from "axios";
+import CustomModal from "./components/Modal";
+
+const App = () => {
+  const [events, setEvents] = useState([]);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [newModalVisible, setNewModalVisible] = useState(false);
+  const [selectedEventData, setSelectedEventData] = useState(null);
+  const calendarRef = useRef();
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = () => {
+    axios
+      .get("https://localhost:7224/auth/CalendarEvent/Get")
+      .then((response) => {
+        setEvents(response.data);
+      })
+      .catch((error) => {
+        console.log("Error fetching events:", error);
+      });
+  };
+
+  const handleEventClick = (clickInfo) => {
+    setSelectedEventData(clickInfo.event);
+    setEditModalVisible(true);
+  };
+
+  const handleNewModalOpen = () => {
+    setNewModalVisible(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setEditModalVisible(false);
+    setSelectedEventData(null);
+  };
+
+  const handleEventAdd = (addedEvent) => {
+    setEvents((prevEvents) => [...prevEvents, addedEvent]);
+  };
+
+  const updateEvent = (id, updatedEventData) => {
+    const eventIndex = events.findIndex((event) => event.id === id);
+
+    if (eventIndex === -1) {
+      console.error("Event not found");
+      return;
+    }
+
+    const updatedEvents = [...events];
+    updatedEvents[eventIndex] = {
+      ...updatedEvents[eventIndex],
+      ...updatedEventData,
+    };
+
+    setEvents(updatedEvents);
+
+    const calendarApi = calendarRef.current.getApi();
+    const eventToUpdate = calendarApi.getEventById(id);
+    eventToUpdate.setProp("title", updatedEventData.title);
+    eventToUpdate.setExtendedProp("description", updatedEventData.description);
+  };
+
+  return (
+    <div className="App">
+      <FullCalendar
+        ref={calendarRef}
+        plugins={[dayGridPlugin, timeGridPlugin, bootstrap5Plugin]}
+        initialView="timeGridWeek"
+        events={events}
+        eventClick={handleEventClick}
+        customButtons={{
+          customButton: {
+            text: "Add New",
+            click: handleNewModalOpen,
+          },
+        }}
+        headerToolbar={{
+          left: "customButton today prev,next",
+          center: "title",
+          right: "timeGridWeek,timeGridDay",
+        }}
+      />
+      {selectedEventData && (
+        <CustomModal
+          setSelectedEventData={setSelectedEventData}
+          show={editModalVisible}
+          onClose={handleCloseEditModal}
+          id={selectedEventData.id}
+          selectedEventData={selectedEventData}
+          title={selectedEventData.title}
+          description={selectedEventData.extendedProps?.description}
+          start={selectedEventData.start}
+          end={selectedEventData.end}
+          editMode={true}
+          updateEvent={updateEvent}
+        />
+      )}
+      {newModalVisible && (
+        <CustomModal
+          show={newModalVisible}
+          onClose={() => setNewModalVisible(false)}
+          editMode={false}
+          addEvent={handleEventAdd}
+        />
+      )}
+    </div>
+  );
+};
+
+export default App;
+
+
+// In this `App.js` file:
+// - We import the necessary dependencies, including `FullCalendar`, 
+// `axios` for making HTTP requests, 
+// and the `CustomModal` component.
+// - Inside the `App` component, we set up state variables to manage 
+// events, modal visibility, and selected event data.
+// - We use `useEffect` to fetch events from the server when the component 
+// mounts.
+// - We define functions to handle event click, opening/closing modals,
+//  adding new events, and updating existing events.
+// - The `FullCalendar` component is rendered with the necessary plugins
+//  and configuration, including event data and custom buttons for adding
+//   new events.
+// - Conditional rendering is used to show the `CustomModal` component for
+//  editing existing events (`editMode`) or adding new events (`editMode` 
+//  set to `false`).
+// - Event handlers are passed as props to the `CustomModal` component for
+//  updating and adding events.
+
+
+Sure, here's how you can integrate the date and time inputs into the modal component:
+
+javascript
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+
+const CustomModal = ({
+  show,
+  onClose,
+  title,
+  description,
+  start,
+  end,
+  editMode,
+  setSelectedEventData,
+  selectedEventData,
+  updateEvent,
+  id,
+}) => {
+  const [editedTitle, setEditedTitle] = useState(title);
+  const [editedDescription, setEditedDescription] = useState(description);
+  const [startDate, setStartDate] = useState(start ? start.substring(0, 10) : "");
+  const [startTime, setStartTime] = useState(start ? start.substring(11, 16) : "");
+  const [endDate, setEndDate] = useState(end ? end.substring(0, 10) : "");
+  const [endTime, setEndTime] = useState(end ? end.substring(11, 16) : "");
+
+  const handleSave = () => {
+    const formattedStart = `${startDate}T${startTime}`;
+    const formattedEnd = `${endDate}T${endTime}`;
+
+    const updatedEventData = {
+      title: editedTitle,
+      extendedProps: {
+        description: editedDescription,
+      },
+      start: formattedStart,
+      end: formattedEnd,
+    };
+
+    updateEvent(id, updatedEventData);
+    onClose();
+  };
+
+  return (
+    <Modal show={show} onHide={onClose} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>{editMode ? "Edit Event" : "Add Event"}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="formTitle">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter title"
+              value={editedTitle}
+              onChange={(e) => setEditedTitle(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              placeholder="Enter description"
+              value={editedDescription}
+              onChange={(e) => setEditedDescription(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formStart">
+            <Form.Label>Start Date</Form.Label>
+            <Form.Control
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+            <Form.Label>Start Time</Form.Label>
+            <Form.Control
+              type="time"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formEnd">
+            <Form.Label>End Date</Form.Label>
+            <Form.Control
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+            <Form.Label>End Time</Form.Label>
+            <Form.Control
+              type="time"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleSave}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default CustomModal;
+
+
+In this modified modal component:
+
+- Added separate state variables `startDate`, `startTime`, `endDate`, and
+ `endTime` to track the date and time inputs.
+- Integrated these state variables into the modal's form controls 
+for start and end date/time inputs.
+- In the `handleSave` function, formatted the start and end dates 
+and times before updating the event data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+To add a dropdown for event type in the modal component, you can follow these steps:
+
+1. Define an array of event types.
+2. Add state variables to track the selected event type.
+3. Integrate a dropdown component into the modal.
+4. Update the event data with the selected event type when saving.
+
+Here's the modified modal component with the dropdown for event type:
+
+javascript
+import React, { useState } from "react";
+import { Modal, Button, Form } from "react-bootstrap";
+
+const CustomModal = ({
+  show,
+  onClose,
+  title,
+  description,
+  start,
+  end,
+  editMode,
+  setSelectedEventData,
+  selectedEventData,
+  updateEvent,
+  id,
+}) => {
+  const [editedTitle, setEditedTitle] = useState(title);
+  const [editedDescription, setEditedDescription] = useState(description);
+  const [startDate, setStartDate] = useState(start ? start.substring(0, 10) : "");
+  const [startTime, setStartTime] = useState(start ? start.substring(11, 16) : "");
+  const [endDate, setEndDate] = useState(end ? end.substring(0, 10) : "");
+  const [endTime, setEndTime] = useState(end ? end.substring(11, 16) : "");
+  const [eventType, setEventType] = useState(selectedEventData?.extendedProps?.eventType || "");
+
+  const eventTypes = [
+    { value: "Meeting", label: "Meeting" },
+    { value: "Appointment", label: "Appointment" },
+    { value: "Call", label: "Call" },
+  ];
+
+  const handleSave = () => {
+    const formattedStart = `${startDate}T${startTime}`;
+    const formattedEnd = `${endDate}T${endTime}`;
+
+    const updatedEventData = {
+      title: editedTitle,
+      extendedProps: {
+        description: editedDescription,
+        eventType: eventType,
+      },
+      start: formattedStart,
+      end: formattedEnd,
+    };
+
+    updateEvent(id, updatedEventData);
+    onClose();
+  };
+
+  return (
+    <Modal show={show} onHide={onClose} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>{editMode ? "Edit Event" : "Add Event"}</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <Form>
+          <Form.Group controlId="formTitle">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter title"
+              value={editedTitle}
+              onChange={(e) => setEditedTitle(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formDescription">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              as="textarea"
+              placeholder="Enter description"
+              value={editedDescription}
+              onChange={(e) => setEditedDescription(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formStart">
+            <Form.Label>Start Date</Form.Label>
+            <Form.Control
+              type="date"
+              value={startDate}
+              onChange={(e) => setStartDate(e.target.value)}
+            />
+            <Form.Label>Start Time</Form.Label>
+            <Form.Control
+              type="time"
+              value={startTime}
+              onChange={(e) => setStartTime(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formEnd">
+            <Form.Label>End Date</Form.Label>
+            <Form.Control
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+            <Form.Label>End Time</Form.Label>
+            <Form.Control
+              type="time"
+              value={endTime}
+              onChange={(e) => setEndTime(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formEventType">
+            <Form.Label>Event Type</Form.Label>
+            <Form.Control
+              as="select"
+              value={eventType}
+              onChange={(e) => setEventType(e.target.value)}
+            >
+              <option value="">Select Event Type</option>
+              {eventTypes.map((type) => (
+                <option key={type.value} value={type.value}>
+                  {type.label}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={onClose}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleSave}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default CustomModal;
+
+
+In this modified modal component:
+
+- Added a state variable `eventType` to track the selected event type.
+- Created an array `eventTypes` containing objects with `value` and `label`
+ properties for each event type option.
+- Integrated a dropdown `<Form.Control>` component for selecting the event type.
+- Updated the `handleSave` function to include the selected event type in the updated
+ event data.

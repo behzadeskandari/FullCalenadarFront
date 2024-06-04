@@ -1,0 +1,147 @@
+.test {
+  /* height: 7em; */
+}
+
+.event-meeting {
+  border: none;
+  background-color: #E8F5E9!important;
+  /*CustomizebackgroundcolorforAppointmentevents*/
+  color: #81C784 !important;
+  /*Customizetextcolor*/border-left: 4px solid #81C784 !important;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.meeting-color{
+  color: #81C784 !important;
+}
+.event-appointment {
+  border: none;
+  border-left: 4px solid #e32a1c !important;
+    background-color: #FCEEEA !important;
+    color: #F44336 !important;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+ 
+}
+.appointment-color{
+  color: #F44336 !important;
+}
+.event-call{
+  background-color:#FFF3E0!important; /* Customize background color for Meeting events */
+  color: #FFB74D !important; /* Customize text color */
+  border: none;
+  border-left: 4px solid #fdb03c!important;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+ 
+}
+.call-color{
+  color: #FFB74D !important; 
+}
+
+.fc-event-card{
+  Width:181px;
+  height:85px;
+  Left:7px;
+  border-radius:6px;
+  -webkit-border-radius:6px;
+  -moz-border-radius:6px;
+  -ms-border-radius:6px;
+  -o-border-radius:6px;
+}
+
+
+.fc-event-icons{
+  display: flex;
+    margin-inline: 5px;
+}
+
+.fc-event-title{
+  margin-inline: 7px;
+  display: ruby;
+
+}
+
+.OrangeIcon{
+  background-image: url('./assets/orangeClock.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  width: 50px;
+  height: 16px;
+  display: block;
+  background-color: transparent;
+}
+.RedIcon{
+  background-image: url('./assets/RedIcon.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  width: 50px;
+  height: 16px;
+  display: block;
+  background-color: transparent;
+}
+.GreenTick{
+  background-image: url('./assets/GreenTick.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  width: 50px;
+  height: 16px;
+  display: block;
+  background-color: transparent;
+}
+
+.fc-event-date{
+  display: flex;
+}
+
+.m2{
+  position: absolute;
+  left: 90%;
+  top: 1%;
+}
+
+
+.fc-theme-bootstrap5 .fc-list, .fc-theme-bootstrap5 .fc-scrollgrid, .fc-theme-bootstrap5 td, .fc-theme-bootstrap5 th {
+  border: 1px solid #f1f1f1;
+}
+
+
+.description{
+  display: flex;
+    flex-flow: column;
+    width: 92%;
+}
+
+.GreenClock{
+  background-image: url('./assets/GreenClock.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  width: 20px;
+  height: 16px;
+  display: block;
+  background-color: transparent;
+}
+.RedClock{
+  background-image: url('./assets/RedClock.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  width: 20px;
+  height: 16px;
+  display: block;
+  background-color: transparent;
+}
+.OrangeClock{
+  background-image: url('./assets/orangeClock.png');
+  background-repeat: no-repeat;
+  background-size: 16px;
+  width: 20px;
+  height: 16px;
+  display: block;
+  background-color: transparent;
+}
